@@ -1,0 +1,60 @@
+#include <iostream>
+
+using namespace std;
+
+struct Aluno {
+    int matricula;
+    float notas[3];
+};
+
+void LeAluno(Aluno &A);
+void ImprimeTurma(const Aluno A[]);
+float CalculaMediaAluno(const Aluno &A);
+
+int main() {
+    const int tamanhoTurma = 5;
+    Aluno Turma[tamanhoTurma];
+
+    for (int i = 0; i < tamanhoTurma; i++) {
+        LeAluno(Turma[i]);
+    }
+
+    ImprimeTurma(Turma);
+
+    for (int i = 0; i < tamanhoTurma; i++) {
+        float media = CalculaMediaAluno(Turma[i]);
+        cout << "Aluno " << Turma[i].matricula << " - Media = " << media << endl;
+    }
+
+    cout << "Pressione Enter para sair...";
+    cin.get(); 
+    return 0;
+}
+
+void LeAluno(Aluno &A) {
+    cout << "\nDigite a matricula do aluno: ";
+    cin >> A.matricula;
+
+    for (int i = 0; i < 3; i++) {
+        cout << "Digite a nota " << i + 1 << ": ";
+        cin >> A.notas[i];
+    }
+}
+
+void ImprimeTurma(const Aluno A[]) {
+    for (int i = 0; i < 5; i++) {
+        cout << "\nMatricula do aluno: " << A[i].matricula << endl;
+        cout << "Notas do aluno:\n";
+        for (int j = 0; j < 3; j++) {
+            cout << A[i].notas[j] << endl;
+        }
+    }
+}
+
+float CalculaMediaAluno(const Aluno &A) {
+    float notas = 0.0;
+    for (int i = 0; i < 3; i++) {
+        notas += A.notas[i];
+    }
+    return notas / 3;
+}
