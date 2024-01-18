@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+void bolha(int vet[],int tam);
+
+int main(int argc,char** argv) {
+  int i, vetor [4];
+
+  for (i=0;i<4;i++){
+    cout<<"Digite um número inteiro: ";
+    cin>>vetor[i];
+  }
+  bolha(vetor,4);
+  
+   for (i=0;i<4;i++){
+    cout<<"O número digitado: "<<vetor[i]<<endl;
+    cin>>vetor[i];
+  }
+  return 0;
+}
+void bolha(int vet[], int tam){
+  int j,i,aux;
+  for(i=0;i<tam-1;i++)
+    for(j=tam-1;j>i;j--)
+      if(vet[j]<vet[j-1])
+      {
+        aux=vet[j];
+        vet[j]= vet[j-1];
+        vet[j-1]=aux;
+      }
+  
+}
