@@ -1,0 +1,18 @@
+#include <iostream>
+#include<cstdlib>
+using namespace std;
+
+float soma(float n);
+float dobra(float n);
+
+int main(){
+    float num = 20;
+    cout<<"\n Apos soma "<<soma(num);
+    cout<<"\n Apos dobra "<<dobra(num);
+  
+}
+float soma (float n)
+{return dobra(n)+5;}
+
+float dobra(float n)
+{return n*2;}
