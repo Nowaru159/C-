@@ -1,0 +1,34 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+void selectionSort(int vet[], int tam)
+{
+    int j, i, aux, temp;
+    for (i = 0; i < tam - 1; i++)
+    {
+        aux = i;
+        for (j = i + 1; j < tam; j++)
+            if (vet[aux] > vet[j])
+                aux = j;
+        temp = vet[aux];
+        vet[aux] = vet[i];
+        vet[i] = temp;
+    }
+}
+
+int main()
+{
+    int vet[] = {90, 25, 30};
+    int tam = 3;
+    selectionSort(vet, tam);
+
+    cout << "Sorted Array: ";
+    for (int i = 0; i < tam; i++)
+    {
+        cout << vet[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
