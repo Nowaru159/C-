@@ -1,0 +1,17 @@
+#include<iostream>
+#include<cstdlib>
+using namespace std;
+void alteraNota(float &);
+int main(){
+struct
+{float prova, trab;} notas;
+cout<<"\nDigite nota da prova ";
+cin>>notas.prova;
+
+alteraNota(notas.prova);
+cout<<"\nNota Alterada"<< notas.prova<< "\tGostou?";
+cout<<"\n\n";
+system("pause");
+}
+void alteraNota(float &p)
+{p= 10;}
