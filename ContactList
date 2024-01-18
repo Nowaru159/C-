@@ -1,0 +1,90 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Contato {
+    string nome;
+    string telefone;
+};
+
+// Exibir um contato
+void exibirContato(const Contato& contato) {
+    cout << "Nome: " << contato.nome << endl;
+    cout << "Telefone: " << contato.telefone << endl;
+    cout << "-------------------------" << endl;
+}
+
+
+int main() {
+    vector<Contato> listaDeContatos;
+    int opcao;
+
+    while (true) {
+        cout << "Menu de Opções:" << endl;
+        cout << "1. Adicionar Contato" << endl;
+        cout << "2. Listar Contatos" << endl;
+        cout << "3. Atualizar Contato" << endl;
+        cout << "4. Deletar Contato" << endl;
+        cout << "5. Sair" << endl;
+        cout << "Escolha uma opção: ";
+        cin >> opcao;
+
+        switch (opcao) {
+            case 1: {
+                Contato novoContato;
+                cout << "Nome: ";
+                cin.ignore(); // Limpar os espaços em branco no nome
+                getline(cin, novoContato.nome);
+                cout << "Telefone: ";
+                getline(cin, novoContato.telefone);
+                listaDeContatos.push_back(novoContato);
+                cout << "Contato adicionado com sucesso!" << endl;
+                break;
+            }
+            case 2: {
+                cout << "Lista de Contatos:" << endl;
+                for (const Contato& contato : listaDeContatos) {
+                    exibirContato(contato);
+                }
+                break;
+            }
+            case 3: {
+                int indice;
+                cout << "Índice do contato a ser atualizado: ";
+                cin >> indice;
+                if (indice >= 0 && indice < listaDeContatos.size()) {
+                    Contato& contato = listaDeContatos[indice];
+                    cout << "Novo Nome: ";
+                    cin.ignore();
+                    getline(cin, contato.nome);
+                    cout << "Novo Telefone: ";
+                    getline(cin, contato.telefone);
+                    cout << "Contato atualizado com sucesso!" << endl;
+                } else {
+                    cout << "Índice inválido!" << endl;
+                }
+                break;
+            }
+            case 4: {
+                int indice;
+                cout << "Índice do contato a ser deletado: ";
+                cin >> indice;
+                if (indice >= 0 && indice < listaDeContatos.size()) {
+                    listaDeContatos.erase(listaDeContatos.begin() + indice);
+                    cout << "Contato deletado com sucesso!" << endl;
+                } else {
+                    cout << "Índice inválido!" << endl;
+                }
+                break;
+            }
+            case 5:
+                cout << "Saindo..." << endl;
+                return 0;
+            default:
+                cout << "Opção inválida!" << endl;
+        }
+    }
+
+    return 0;
+}
