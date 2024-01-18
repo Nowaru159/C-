@@ -1,0 +1,107 @@
+#include <iostream>
+#include <iomanip> 
+using namespace std;
+
+int main()
+{
+    int op, n, x;
+    float *alunos = nullptr, soma = 0, media = 0;
+
+    do
+    {
+        system("cls");
+        cout << "\n\n- - - Alocacao Dinamica - - -";
+        cout << "\n-1- Insere numero de alunos";
+        cout << "\n-2- Insere notas";
+        cout << "\n-3- Calcula media da turma";
+        cout << "\n-4- Exibe Relacao da Notas";
+        cout << "\n-5- Sai";
+        cout << "\nOpcao: ";
+        cin >> op;
+        system("cls");
+
+        switch (op)
+        {
+        case 1:
+            cout << "\nDigite numero de alunos: ";
+            cin >> n;
+
+
+            if (alunos != nullptr)
+            {
+                delete[] alunos;
+            }
+
+            alunos = new float[n];
+
+            if (alunos == nullptr)
+            {
+                cout << "\nNao foi possível fazer alocacao\n";
+                return 1;
+            }
+            break;
+
+        case 2:
+            if (alunos != nullptr)
+            {
+                for (x = 0; x < n; x++)
+                {
+                    cout << "\nDigite nota para o aluno " << x + 1 << ": ";
+                    cin >> alunos[x];
+                }
+            }
+            else
+            {
+                cout << "\nVoce nao determinou a quantidade de alunos\n";
+            }
+            break;
+
+        case 3:
+            if (alunos != nullptr)
+            {
+                soma = 0;
+                for (x = 0; x < n; x++)
+                {
+                    soma += alunos[x];
+                }
+                media = soma / n;
+                cout << "\nMedia Calculada\n\n";
+            }
+            else
+            {
+                cout << "\nVoce nao alocou memoria para os alunos\n";
+            }
+            break;
+
+        case 4:
+            if (alunos != nullptr)
+            {
+                cout << "\nRelacao das Notas\n";
+                for (x = 0; x < n; x++)
+                {
+                    cout << "\n" << setw(3) << x + 1 << " - " << alunos[x];
+                }
+                cout << "\n\nMedia da Turma: " << setprecision(3) << media << endl;
+            }
+            else
+            {
+                cout << "\nVoce nao alocou memoria para os alunos\n";
+            }
+            break;
+
+        case 5:
+            cout << "\nFim da alocacao Dinamica\n";
+            delete[] alunos;
+            alunos = nullptr;
+            break;
+
+        default:
+            cout << "\nOpcao Invalida\n";
+        }
+        cout << "\n\n";
+        system("pause");
+
+    } while (op != 5);
+
+    return 0;
+}
